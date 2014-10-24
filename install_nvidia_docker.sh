@@ -20,6 +20,8 @@ DOCKER_IMAGE=$1
 echo $DOCKER_IMAGE
 NVIDIA_SCRIPT_INTERNAL=/mnt/install_nvidia_internal.sh
 
-docker run --name="install-nvidia" -i -t -v  $PWD:/mnt $DOCKER_IMAGE $NVIDIA_SCRIPT_INTERNAL 
+LINUX_VERSION=`uname -v`
+docker run -i -t -v $PWD:/mnt 
+#$DOCKER_IMAGE $NVIDIA_SCRIPT_INTERNAL 
 #docker start install-nvidia
-docker attach install-nvidia
+#docker attach install-nvidia
