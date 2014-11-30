@@ -8,5 +8,7 @@ echo $XAUTH
 echo $XSOCK
 echo "docker run --privileged=true -v $XSOCK:$XSOCK:rw -v $XAUTH:$XAUTH:rw -v /dev/dri:/dev/dri:rw -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTH $args"
 
-docker run --privileged=true -v $XSOCK:$XSOCK:rw -v $XAUTH:$XAUTH:rw -v /dev/dri:/dev/dri:rw -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTH $args
+
+#docker run --privileged=true -v $XSOCK:$XSOCK:rw -v $XAUTH:$XAUTH:rw -v /dev/dri:/dev/dri:rw -v /dev/console:/dev/console:rw -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTH $args
+docker run -v $XSOCK:$XSOCK:rw -v $XAUTH:$XAUTH:rw --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device=/dev/dri/card0:/dev/dri/card0 --device=/dev/console:/dev/console -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTH $args
 
